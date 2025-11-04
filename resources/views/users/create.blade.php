@@ -22,7 +22,7 @@
     </div>
 @endif
 
-<from action="{{ url('/user-store') }}" method="POST">
+<form action="{{ route('users.store') }}" method="POST">
     @csrf
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 ">
@@ -36,9 +36,9 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button class="btn btn-primary" type="submit" >Save</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-</from>
+</form>
 
 @endsection
