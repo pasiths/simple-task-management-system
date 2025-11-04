@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
@@ -34,7 +35,7 @@ class UserController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'email' => 'required|email|unique:users,email'
+                'email' => 'required|email|unique:users,email',
             ]);
 
             DB::table('users')->insert([
@@ -42,15 +43,13 @@ class UserController extends Controller
                 'email' => $request->input('email'),
             ]);
 
-            return redirect()->route('users.index')
-                ->with('success', 'User created successfully.');
         } catch (\Exception $e) {
-            //throw $th;
+            // throw $th;
             error_log($e->getMessage());
         }
-        
 
-        
+        return redirect()->route('users.index')
+            ->with('success', 'User created successfully.');
     }
 
     /**
