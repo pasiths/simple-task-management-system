@@ -45,7 +45,7 @@ class UserController extends Controller
 
         } catch (\Exception $e) {
             // throw $th;
-            error_log($e->getMessage());
+            return error_log($e->getMessage());
         }
 
         return redirect()->route('users.index')
